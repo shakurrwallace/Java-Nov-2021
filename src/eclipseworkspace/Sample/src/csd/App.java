@@ -1,43 +1,71 @@
 /*----------------------------------------------------------------------------------------------------------------------
-	Sınıf Çalışması: Paremtresi ile aldığı bir sayının Armstrong sayısı olup olmadığını test eden isArmstrong metodunu
-	yazınız ve aşağıdaki kod ile test ediniz:
-	Açıklamalar: 
-		- Pozitif bir sayının her basamağının basamak sayıncı kuvvetleri toplandığında sonuç sayının kendisine eşitse
-		bu sayıya Armstrong sayısı denir
-			153 -> 1 * 1 * 1 + 5 * 5 * 5 + 3 * 3 * 3 = 153 				
-		 - Kuvvet alma işlemi için yukarıda yazılmış pow metodunu kullanınız		 		 
+	Sınıf Çalışması: 
 ----------------------------------------------------------------------------------------------------------------------*/
 package csd;
 
 class App {
 	public static void main(String [] args) 
 	{
-		IsArmstrongTest.run();			
+		IsPrimeTest.run();			
 	}
 }
 
-class IsArmstrongTest {	
+class IsPrimeTest {	
 	public static void run()
-	{
-		for (int n = 0; n <= 9999999; ++n)
-			if (NumberUtil.isArmstrong(n))
-				System.out.println(n);
+	{		
+		System.out.println(NumberUtil.isPrime(1_000_003));				
+		System.out.println(NumberUtil.isPrimeSlow(1_000_003));
 	}
 }
 
 class NumberUtil {
-	public static boolean isArmstrong(int val)
+	public static boolean isPrime(long val)
 	{
-		//TODO:
+		if (val <= 1)
+			return false;
+		
+		if (val % 2 == 0)
+			return val == 2;
+		
+		if (val % 3 == 0)
+			return val == 3;
+		
+		if (val % 5 == 0)
+			return val == 5;
+		
+		if (val % 7 == 0)
+			return val == 7;
+		
+		int count = 0;
+		
+		for (long i = 11; i * i <= val; i += 2) {
+			++count;
+			if (val % i == 0)
+				return false;
+		}
+		
+		System.out.printf("isPrime:count:%d%n", count);
+		
+		return true;							
 	}
 	
-	public static int pow(int a, int b)
+	public static boolean isPrimeSlow(long val)
 	{
-		int result = 1;
+		if (val <= 1)
+			return false;
 		
-		while (b-- > 0)
-			result *= a;
+		long halfVal = val / 2;
 		
-		return result;
+		int count = 0;
+		
+		for (long i = 2; i <= halfVal; ++i) {
+			++count;
+			if (val % i == 0)
+				return false;
+		}
+		
+		System.out.printf("isPrimeSlow:count:%d%n", count);
+		return true;
 	}
 }
+
