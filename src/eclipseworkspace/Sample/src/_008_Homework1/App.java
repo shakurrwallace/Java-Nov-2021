@@ -48,8 +48,8 @@ class NumberUtil {
 		System.out.printf("%d %c %d %c %d ", min, relation(min, mid), mid, relation(mid, max), max);
 	}
 	
-	private static char relation(int a, int b) {
-		
+	private static char relation(int a, int b)
+	{	
 		return a == b ? '=' : '<';
 		
 	}
