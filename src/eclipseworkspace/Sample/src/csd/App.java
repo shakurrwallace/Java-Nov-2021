@@ -1,26 +1,28 @@
-/*----------------------------------------------------------------------------------------------------------------------
-	Yukarıdaki örnek için gerek olmasa da parantez konması okunabilirliği artırır 
+/*----------------------------------------------------------------------------------------------------------------------	
+	non-static veri elamanlarına nesnesin yaratılması aşamasında default değerler verilir. Default değer türe özgü
+	mantıksal sıfır değeridir. Örneğin int türü için sıfırken, boolean türü için false değerindedir. Default değerler
+	sınıfın veri elemanları final bildirilmişse verilmez. Bu konu ileride ele alınacaktır
 ----------------------------------------------------------------------------------------------------------------------*/
 package csd;
 
 class App {
 	public static void main(String [] args) 
 	{
-		java.util.Scanner kb = new java.util.Scanner(System.in);
-		System.out.print("Birinci sayıyı giriniz:");
-		int a = Integer.parseInt(kb.nextLine());
-
-		System.out.print("İkinci sayıyı giriniz:");
-		int b = Integer.parseInt(kb.nextLine());
+		Sample s, k;
 		
-		System.out.print("Üçüncü sayıyı giriniz:");
-		int c = Integer.parseInt(kb.nextLine());
+		s = new Sample();	
+		k = new Sample();
 		
-		int max;		
+		System.out.printf("s.x = %d%n", s.x);
+		System.out.printf("s.y = %b%n", s.y);
 		
-		max = (a > b) ? (a > c ? a : c) : (b > c ? b : c);
-		
-		System.out.printf("max(%d, %d, %d) = %d%n", a, b, c, max);
+		System.out.printf("k.x = %d%n", k.x);
+		System.out.printf("k.y = %b%n", k.y);
 	}
 }
 
+class Sample {
+	public int x;
+	public boolean y;
+	//...
+}
