@@ -1,26 +1,55 @@
-/*----------------------------------------------------------------------------------------------------------------------	
-	Aşağıdaki örnekte main içerisindeki yerel değişken olan b'nin değeri metot çağrısından sonra değişmez. Çünkü 
-	argümanlardan parametrelere aktarım bir atama işlemidir
+/*----------------------------------------------------------------------------------------------------------------------
+	Sınıf Çalışması: İki zar atıldığında zarların çift gelmesi (ikisi de aynı) olasılığını yaklaşık olarak hesaplayan
+	simülasyon programını yazınız
 ----------------------------------------------------------------------------------------------------------------------*/
 package csd;
 
 class App {
 	public static void main(String [] args) 
-	{				
-		int b = 10;
-		
-		Sample.foo(b);
-		
-		System.out.printf("b = %d%n", b);
+	{	
+		CoinSimulationApp.run();
 	}
 }
 
-class Sample {
-	public static void foo(int a)
+class CoinSimulationApp {
+	public static void run()
 	{
-		//...
-		++a;
-		//...
+		java.util.Scanner kb = new java.util.Scanner(System.in);
+		CoinSimulation cs = new CoinSimulation();
+		
+		for (;;) {
+			System.out.print("Parayı kaç kez atmak istiyorsunuz?");
+			int count = Integer.parseInt(kb.nextLine());
+			
+			if (count <= 0)
+				break;
+			
+			cs.run(count);
+			System.out.printf("Yazı gelme olasılığı:%f%n", cs.p);
+		}
+				
 	}
 }
 
+class CoinSimulation {
+	public double p;
+	
+	//...
+	public static int getNumberOfTails(int count)
+	{		
+		java.util.Random r = new java.util.Random();
+		int n = 0;
+		
+		for (int i = 0; i < count; ++i)
+			if (r.nextBoolean())
+				++n;
+		
+		return n;
+	}
+	
+	
+	public void run(int count)
+	{
+		p = getNumberOfTails(count) / (double)count;				
+	}
+}
