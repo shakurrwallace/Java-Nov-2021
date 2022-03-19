@@ -1,55 +1,35 @@
 /*----------------------------------------------------------------------------------------------------------------------
-	Sınıf Çalışması: İki zar atıldığında zarların çift gelmesi (ikisi de aynı) olasılığını yaklaşık olarak hesaplayan
-	simülasyon programını yazınız
+	Sınıf Çalışması: Klavyeden bir kullanıcı adı ve şifre isteyen basit ATM uygulamasının bir parçasını aşağıdaki
+	açıklamalara göre yazınız
+	Açıklamalar:
+	- Kullanıcı adı ve şifresi en fazla 3(üç) kez denenebilecektir.
+	
+	- Denemeler sırasında doğru giriş yapılırsa "GİRİŞ BAŞARILI", başarısız denemelerde "GİRİŞ BAŞARISIZ!...", 3. denemede de
+	başarısız olunursa "GİRİŞ BAŞARISIZ. ARTIK DENEME HAKKINIZ BİTTİ!..." mesajları verilecektir.
+	
+	- Kullanıcı adı ve şifrenin doğruluğu program içerisinde belirlenen bir kullanıcı adı ve şifre ile yapılacaktır.
+	
+	- Uygulamayı genel düşünürek yazınız	
 ----------------------------------------------------------------------------------------------------------------------*/
 package csd;
 
 class App {
 	public static void main(String [] args) 
-	{	
-		CoinSimulationApp.run();
-	}
-}
-
-class CoinSimulationApp {
-	public static void run()
-	{
+	{			
 		java.util.Scanner kb = new java.util.Scanner(System.in);
-		CoinSimulation cs = new CoinSimulation();
 		
 		for (;;) {
-			System.out.print("Parayı kaç kez atmak istiyorsunuz?");
-			int count = Integer.parseInt(kb.nextLine());
+			System.out.print("Bir yazı giriniz:");
+			String s = kb.nextLine();
 			
-			if (count <= 0)
+			if ("elma".equals(s))
 				break;
 			
-			cs.run(count);
-			System.out.printf("Yazı gelme olasılığı:%f%n", cs.p);
+			System.out.printf("(%s)%n", s);
+			System.out.printf("(%s)%n", s.trim());
 		}
-				
+		
+		System.out.println("Tekrar yapıyor musunuz?");
 	}
 }
 
-class CoinSimulation {
-	public double p;
-	
-	//...
-	public static int getNumberOfTails(int count)
-	{		
-		java.util.Random r = new java.util.Random();
-		int n = 0;
-		
-		for (int i = 0; i < count; ++i)
-			if (r.nextBoolean())
-				++n;
-		
-		return n;
-	}
-	
-	
-	public void run(int count)
-	{
-		p = getNumberOfTails(count) / (double)count;				
-	}
-}
