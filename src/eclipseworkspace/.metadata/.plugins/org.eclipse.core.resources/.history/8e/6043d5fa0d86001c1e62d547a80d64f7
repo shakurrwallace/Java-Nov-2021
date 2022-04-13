@@ -20,7 +20,7 @@ public class App {
 
 	public static void main(String[] args) 
 	{
-		String binary = findBinary(9856);
+		String binary = findBinary(1041);
 		System.out.println(binary);
 		int counter = 0;
 		int binarygap = 0;

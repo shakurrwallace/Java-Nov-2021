@@ -20,26 +20,24 @@ public class App {
 
 	public static void main(String[] args) 
 	{
-		String binary = findBinary(9856);
-		System.out.println(binary);
-		int counter = 0;
+		String binary = findBinary(1041);
+		int count = 0;
 		int binarygap = 0;
-		int maxCounter = 0;
 		for (int i = 0; i < binary.length(); i++) {
-			if (binary.charAt(i) == '1') {
-				counter = 0;
-			}
-			else {
-				counter++;
-				if (counter > maxCounter) {
-					maxCounter = counter;
+			
+			if (i % 2 == 0) {
+				count++;
+			} else {
+				if (count > binarygap) {
+					binarygap = count;
+				System.out.println("binary gap : " + binarygap);
 				}
 			}
-			
+				
+			boolean flag = true; 
 		}
-		System.out.print(maxCounter);
 	}
-		
+	
 	public static String findBinary(int n) {
 		String binary = "";
         while (n != 0) {

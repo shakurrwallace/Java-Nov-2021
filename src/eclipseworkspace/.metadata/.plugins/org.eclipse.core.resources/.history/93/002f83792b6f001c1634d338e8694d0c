@@ -1,0 +1,23 @@
+/*klavyeden 0 girilene kadar kullanıcıdan input isteyen program
+ * 
+ * 
+ * 
+ * */
+package _006_EquationExample;
+
+class Appq {
+
+	public static void main(String[] args) {
+		java.util.Scanner kb = new java.util.Scanner (System.in);	
+		int n = -1;
+		
+		do { 
+			System.out.println("N değeri giriniz: ");		
+			n = Integer.parseInt(kb.nextLine());
+		
+		} while (n == 0);
+		System.out.println("Program sonlanmıştır.");
+			
+	}
+
+}
